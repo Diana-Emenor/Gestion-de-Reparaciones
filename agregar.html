@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Gestion de Reparaciones</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+		<link rel="stylesheet" href="./css/customTextArea.css">
+	</head>
+	<body>
+		<div class="container-sm pt-4">
+			<div class="card">
+				<div class="card-header text-center">Añadir servicio</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<img src="./img/Imagen4.png" class="mx-auto d-block">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<p class="text-center">Soporte Técnico y Reparaciones</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<p class="text-center">Mariano Matamoros N.Ext 13 N.Int 4 en San José Guadalupe, Toluca, Estado de México</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<p class="text-center">Técnico Alfredo Solis 56-11-03-76-71</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<hr>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+						</div>
+						<div class="col-sm">
+							<div class="input-group mb-3 input-group-sm">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Cliente: </span>
+								</div>
+								<input type="text" class="form-control" id="Cliente">
+							</div>
+						</div>
+						<div class="col-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+						</div>
+						<div class="col-sm">
+							<div class="input-group mb-3 input-group-sm">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Dirección: </span>
+								</div>
+								<input type="text" class="form-control" id="Direccion">
+							</div>
+						</div>
+						<div class="col-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+						</div>
+						<div class="col-sm">
+							<div class="input-group mb-3 input-group-sm">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Teléfono: </span>
+								</div>
+								<input type="number" class="form-control" id="Telefono">
+							</div>
+						</div>
+						<div class="col-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<hr>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Concepto del servicio prestado</th>
+										<th>Costo</th>
+									</tr>
+								</thead>
+									<tr>
+										<th>
+											<div class="form-group">
+												<textarea class="form-control" rows="5" id="Concepto"></textarea>
+											</div>
+										</th>
+										<th>
+										<div class="input-group mb-3 input-group-sm">
+											<div class="input-group-prepend">
+												<span class="input-group-text">$</span>
+											</div>
+											<input type="text" class="form-control" id="Costo">
+										</div>
+										</th>
+									</tr>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-5">
+						</div>
+						<div class="col-sm-2">
+							<h5 class="text-center">Garantía</h5>
+						</div>
+						<div class="col-sm-5">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+						<p>El servicio prestado tiene una garantia de:</p>
+						</div>
+						<div class="col-sm">
+							<div class="input-group mb-3 input-group-sm">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Días</span>
+								</div>
+								<input type="number" class="form-control" id="Dias">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+						<p>días a partir de </p>
+						</div>
+						<div class="col-sm">
+							<div class="input-group mb-3 input-group-sm">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Fecha</span>
+								</div>
+								<input type="date" class="form-control" id="Fecha">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<div class="form-group">
+								<label for="Garantia">La garantía cubre:</label>
+								<textarea class="form-control" rows="5" id="Garantia"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm"></div>
+						<div class="col-sm">
+							<button type="button" class="btn btn-primary" id="Submit">Añadir archivo</button>
+						</div>
+						<div class="col-sm"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="./js/Agregar.js"></script>
+	</body>
+</html>
