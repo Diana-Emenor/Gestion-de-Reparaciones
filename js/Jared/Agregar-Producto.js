@@ -11,7 +11,7 @@ $(function(){
 	
 	function BorrarPDF(archivo){
 		$.ajax({
-			url: "../php/BorrarArchivo.php",
+			url: "https://notas-taller.000webhostapp.com/php/BorrarArchivo.php",
 			datatype: "json",
 			data: {
 				Archivo: archivo
@@ -31,7 +31,7 @@ $(function(){
 	
 	
 	$.ajax({
-		url: "../php/Jared/ObtenerID-Recibo.php",
+		url: "https://notas-taller.000webhostapp.com/php/Jared/ObtenerID-Recibo.php",
 		datatype: "json",
 		data: {
 		},
@@ -120,7 +120,7 @@ $(function(){
 			alert("El campo 'Fallo' es requerido.");
 		} else { 
 		$.ajax({
-			url: "../php/Jared/GenerarProducto.php",
+			url: "https://notas-taller.000webhostapp.com/php/Jared/GenerarProducto.php",
 			datatype: "json",
 			data: {
 				Nombre: $("#Nombre").val(),
@@ -146,8 +146,8 @@ $(function(){
 				var a = document.createElement("a");
 				a.style.display = "none";
 				document.body.appendChild(a);
-				a.href = new URL("http://notas.taller/Archives/" + archivo);
-				//a.href = new URL("https://notas-taller.000webhostapp.com/Archives/" + archivo); //Versión de producción
+				//a.href = new URL("http://notas.taller/Archives/" + archivo);
+				a.href = new URL("https://notas-taller.000webhostapp.com/Archives/" + archivo); //Versión de producción
 				a.setAttribute("download", './' + archivo);
 				a.click();
 				window.URL.revokeObjectURL(a.href);
