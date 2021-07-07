@@ -2,7 +2,7 @@
 	require_once '../DB_Functions.php';
 	
 	$Table = "";
-	$Usuario = $_POST["Usuario"];
+	$Usuario = 0;
 	$DB = new DB_Functions();
 	$object = array();
 
@@ -13,19 +13,13 @@
 	}
 	
 	foreach($data as $row) {
-		$table.="<tr>";
-		$index = 0;
+		$Table.="<tr>";
 		foreach($row as $cell) {
-			if($index<5) {
-				$table.="<td>{$cell}</td>";
-			} else {
-				$table.="<td>Descargar</td>";
-			}
-			$index++;
+			$Table.="<td>{$cell}</td>";
 		}
-		$table.="</tr>";
-		$object[] = $table;
-		$table="";
+		$Table.="</tr>";
+		$object[] = $Table;
+		$Table="";
 	}
 	echo json_encode($object);
 ?>

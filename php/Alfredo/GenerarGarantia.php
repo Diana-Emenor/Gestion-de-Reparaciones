@@ -1,36 +1,38 @@
 <?php
-	require("fpdf.php");
-	require_once 'DB_Functions.php';
-	require_once 'PDF.php';
-	
+	require_once '../DB_Functions.php';
+	require_once '../PDF.php';
+
 	$db = new DB_Functions();
+	$pdf = new PDF(); 
 	$Nombre = $_POST["Nombre"];
 	$Apellido = $_POST["Apellido"];
-	$Direccion = $_POST["Direccion"];
+	$Direccion = str_replace('"', "''", $_POST["Direccion"]);
 	$Telefono1 = $_POST["Telefono1"];
 	$Telefono2 = $_POST["Telefono2"];
-	$Concepto = $_POST["Concepto"];
+	$Concepto = str_replace('"', "''", $_POST["Concepto"]);
 	$Costo = $_POST["Costo"];
 	$Dias = $_POST["Dias"];
-	$Garantia = $_POST["Garantia"];
-	$FechaGarantia = date_format(date_create($_POST["Fecha"]), 'd/m/Y');
+	$Garantia = str_replace('"', "''", $_POST["Garantia"]);
+	$FechaGarantia = date_format(date_create($_POST["Fecha"]), 'Y/m/d');
 	$Fecha = $_POST["FechaActual"];
 	$anchoimagen = $_POST["Ancho"];
-	/* Camino a Archivo local, metodo no usado ahora
+	/* //Camino a Archivo local, metodo no usado ahora
 	$fi = new FilesystemIterator("../Archives/", FilesystemIterator::SKIP_DOTS);
 	$id = iterator_count($fi);
 	*/
-	$direccionarchivo = "{$id}-{$cliente}.pdf";
 	$header = array('Concepto del servicio prestado', 'Costo');
-	$pdf = new PDF(); 
 	
 	//Manipulación de la Base de Datos
-	if(!$db->ExisteClientePorNombre($Nombre, $Apellido) && !$db->ExisteClientePorTelefono($Telefono)) {
-		$db->AñadirCliente($Nombre, $Apellido, $Direccion, $Telefono1, $Telefono2)
+	if(!$db->ExisteClientePorNombre($Nombre, $Apellido) && !$db->ExisteClientePorTelefono($Telefono1)) {
+		$idcliente = $db->AñadirCliente($Nombre, $Apellido, $Direccion, $Telefono1, $Telefono2);
+	} else {
+		$idcliente = $db->IDCliente($Nombre, $Apellido, $Telefono1);
 	}
 	//Versión sin producto asociado
-	$db->AñadirGarantia($FechaGarantia, $Dias, $Garantia);
+	$id = $db->AñadirGarantia($FechaGarantia, $Dias, $Concepto, $Costo, $Garantia, $idcliente, 0);
 	
+	$Direccionarchivo = "{$id}-{$Nombre} {$Apellido}.pdf";
+
 	//Creación del documento PDF
 	$pdf->AddFont('A2','','arial.php');
 	$pdf -> AddPage();
@@ -46,20 +48,20 @@
 	$pdf->Cell(0, 12, iconv('utf-8', 'ISO-8859-15', "Técnico Alfredo Solis 56-11-03-76-71"), 0, 0, 'C');
 	$pdf->Ln();
 	$pdf->Ln();
-	$pdf->Cell(0, 12, iconv('utf-8', 'ISO-8859-15', "Cliente: " . $cliente), 0, 0, 'C');
+	$pdf->Cell(0, 12, iconv('utf-8', 'ISO-8859-15', "Cliente: " . $Nombre . ' ' . $Apellido), 0, 0, 'C');
 	$pdf->Ln();
-	$pdf->Cell(0, 12, iconv('utf-8', 'ISO-8859-15', "Dirección: " . $direccion), 0, 0, 'C');
+	$pdf->Cell(0, 12, iconv('utf-8', 'ISO-8859-15', "Dirección: " . $Direccion), 0, 0, 'C');
 	$pdf->Ln();
-	$pdf->Cell(0, 12, iconv('utf-8', 'ISO-8859-15', "Teléfono: " . $telefono), 0, 0, 'C');
+	$pdf->Cell(0, 12, iconv('utf-8', 'ISO-8859-15', "Teléfono: " . $Telefono1), 0, 0, 'C');
 	$pdf->Ln();
-	$concepto2 = iconv('utf-8', 'ISO-8859-15', $concepto);
-	$arraya = $concepto2 . ';$' . $costo;
+	$Concepto2 = iconv('utf-8', 'ISO-8859-15', $Concepto);
+	$arraya = $Concepto2 . ';$' . $Costo;
 	$pdf->BasicTable($header, Array(explode(';', $arraya)));
 	$pdf->Ln();
 	$pdf->Ln();
 	$pdf->Cell(0, 12, iconv('utf-8', 'ISO-8859-15', "Garantía"), 0, 0, 'C');
 	$pdf->Ln();
-	$pdf->MultiCell(0, 12, iconv('utf-8', 'ISO-8859-15', "El servicio prestado tiene una garantia de: {$dias_garantia} días a partir del día {$fecha_garantia}. La garantia cubre: {$garantia}"));
+	$pdf->MultiCell(0, 12, iconv('utf-8', 'ISO-8859-15', "El servicio prestado tiene una garantia de: {$Dias} días a partir del día {$FechaGarantia}. La garantia cubre: {$Garantia}"));
 	$pdf->AddPage('L');
 	$pdf->Image('http://notas.taller//img/Tarjeta-Alfredo-1.jpg', 0, 0, $pdf->GetPageWidth(), $pdf->GetPageHeight());
 	//$pdf->Image('https://notas-taller.000webhostapp.com//img/Tarjeta-Alfredo-1.jpg', 0, 0, $pdf->GetPageWidth(), $pdf->GetPageHeight()); //Ver. producción
@@ -67,12 +69,12 @@
 	$pdf->Image('http://notas.taller//img/Tarjeta-Alfredo-2.jpg', 0, 0, $pdf->GetPageWidth(), $pdf->GetPageHeight());
 	//$pdf->Image('https://notas-taller.000webhostapp.com//img/Tarjeta-Alfredo-2.jpg', 0, 0, $pdf->GetPageWidth(), $pdf->GetPageHeight()); //Ver. Producción
 	
-	$pdf->Output('F', "../Archives/{$direccionarchivo}");
+	$pdf->Output('F', "../../Archives/{$Direccionarchivo}");
 	
+	/* Solo necesario en caso de no contar con una base de datos con SQL
 	$database = fopen("../database.txt", "a+") or die("Unable to open file!");
-	fwrite($database, "{$id};{$cliente};{$telefono};{$date};{$direccionarchivo}"."\r\n");
+	fwrite($database, "{$id};{$Nombre . ' ' . $Apellido};{$Telefono1};{$date};{$Direccionarchivo}"."\r\n");
 	fclose($database);
-	echo "{$direccionarchivo}";
-	//Retorno, se tratará de enviar la URL para su descarga. En dado caso de que no se pueda, se tendra que manejar de distinta forma para poder generar la url y hacer la descarga manual, tengo mis dudas debido al FAQ de la libreria que dice que "No uses a AJAX request para obtener el PDF."
-	
+	*/
+	echo "{$Direccionarchivo}";
 ?>

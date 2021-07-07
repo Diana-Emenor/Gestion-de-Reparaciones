@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Gestion de Reparaciones</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container-sm pt-4">
+			<div class="card">
+				<div class="card-header text-center">Agregar nota de Recepción</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-6">
+							<p id="fecha"></p>
+						</div>
+						<div class="col-6">
+							<p class="text-right" id="id"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<h3 class="text-center">Recibo de producto a diagnosticar y/o reparar.</h3>
+						</div>
+					</div>
+					<div class="row">
+						<!-- añadir todo el cuerpo de notas de recepción. -->
+						<div class="col-sm">
+							<div class="row">
+								<div class="col-sm">
+									<img src="../img/Imagen4.png" class="img-fluid mx-auto d-block" alt="logo">
+								</div>
+							</div>
+							<hr>
+							<form id="Product" action="../php/Alfredo/SubirProducto.php">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Cliente: </span>
+									</div>
+									<input type="number" class="form-control" placeholder="Nombre" id="Nombre" required>
+									<input type="number" class="form-control" placeholder="Apellido" id="Apellido">
+								</div>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Dirección: </span>
+									</div>
+									<input type="text" class="form-control" placeholder="La dirección del cliente" id="Direccion">
+								</div>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Teléfono: </span>
+									</div>
+									<input type="text" class="form-control" placeholder="Teléfono principal del cliente" id="Telefono1" required>
+									<input type="text" class="form-control" placeholder="Teléfono secundario" id="Telefono2">
+								</div>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Quien recibe: </span>
+									</div>
+									<input type="text" class="form-control" placeholder="El nombre de quien recibe" id="Recibe" value="Alfredo Solis" disabled>
+								</div>
+								<hr>
+								<hr>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Tipo de servicio: </span>
+									</div>
+									<input type="text" class="form-control" placeholder="Tipo de servicio" id="Servicio" required>
+								</div>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Pago de anticipado: </span>
+									</div>
+									<input type="text" class="form-control" placeholder="Pago de anticipado" id="Anticipado">
+								</div>
+								<hr>
+								<hr>
+								
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Tipo: </span>
+									</div>
+									<input type="text" class="form-control" placeholder="Tipo de aparato" id="Tipo" required>
+								</div>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Marca: </span>
+									</div>
+									<input type="text" class="form-control" placeholder="La marca del aparato" id="Marca">
+								</div>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Modelo: </span>
+									</div>
+									<input type="text" class="form-control" placeholder="El modelo del aparato" id="Modelo">
+								</div>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Fallo: </span>
+									</div>
+									<textarea class="form-control" placeholder="La descripción del fallo" id="Fallo" required></textarea>
+								</div>
+								<div class="input-group mb-3 custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="Cable" name="Cable">
+									<label class="custom-control-label" for="Cable">¿Tiene cable?</label>
+								</div>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">¿Tiene Control? </span>
+									</div>
+									<input type="text" class="form-control" placeholder="Dejar vacio si no." id="Control">
+								</div>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Otras caracteristicas: </span>
+									</div>
+									<input type="text" class="form-control" placeholder="Caracteristicas" id="Caracteristicas">
+								</div>
+								<hr>
+								<hr>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Descripción: </span>
+									</div>
+									<input type="text" class="form-control" placeholder="Descripción general" id="General" disabled>
+								</div>
+								<!-- div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Fecha: </span>
+									</div>
+									<input type="text" class="form-control" placeholder="La fecha de hoy" id="Fecha">
+								</div -->
+								<button type="submit" class="btn btn-primary" id="Submit">Agregar</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="../js/Alfredo/Agregar-Producto.js"></script>
+	</body>
+</html>

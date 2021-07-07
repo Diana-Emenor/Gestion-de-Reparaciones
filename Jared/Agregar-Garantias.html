@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Gestion de Reparaciones</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+		<link rel="stylesheet" href="../css/customTextArea.css">
+	</head>
+	<body>
+		<div class="container-sm pt-4">
+			<div class="card">
+				<div class="card-header text-center">Añadir servicio</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<img src="../img/Imagen4.png" class="img-fluid mx-auto d-block" alt="logo">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<p class="text-center">Soporte Técnico y Reparaciones</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<p class="text-center">Manuel J. Clouthier. # 46 San Jerónimo Chicahualco, Metepec, Estado de México</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<p class="text-center">Técnico Jared Solis 729-26-41-466</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<hr>
+						</div>
+					</div>
+					<form action="./php/GenerarPDF.php">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Cliente: </span>
+							</div>
+							<input type="number" class="form-control" placeholder="Nombre" id="Nombre" required>
+							<input type="number" class="form-control" placeholder="Apellido" id="Apellido" required>
+						</div>
+						
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Dirección: </span>
+							</div>
+							<input type="text" class="form-control" placeholder="Dirección" id="Direccion">
+						</div>
+						
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Teléfono: </span>
+							</div>
+							<input type="text" class="form-control" placeholder="Teléfono 1" id="Telefono1" required>
+							<input type="text" class="form-control" placeholder="Teléfono 2" id="Telefono2">
+						</div>
+						
+						
+						<div class="input-group mb-3">
+							<textarea type="text" class="form-control" placeholder="Concepto del servicio prestado" id="Concepto" required></textarea>
+						</div>
+						
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" placeholder="Costo" id="Costo" required>
+						</div>
+						
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">El servicio tiene una garantia de</span>
+							</div>
+							<input type="text" class="form-control" placeholder="días" id="Dias" required>
+						</div>
+						
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">días a partir del dia</span>
+							</div>
+							<input type="date" class="form-control" id="Fecha" required>
+						</div>
+						
+						<div class="row">
+							<div class="col-sm">
+								<p>La garantia cubre lo siguiente:</p>
+							</div>
+						</div>
+						
+						<div class="input-group mb-3">
+							<textarea type="text" class="form-control" placeholder="Garantia" id="Garantia" required></textarea>
+						</div>
+						
+						<button type="submit" class="btn btn-primary" id="Submit">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="../js/Jared/Agregar-Garantias.js"></script>
+	</body>
+</html>
